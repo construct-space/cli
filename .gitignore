@@ -1,0 +1,10 @@
+/construct
+*.exe
+dist/
+dist-bin/
+npm/binaries/
+npm/.npmrc
+node_modules/
+package.json
+.DS_Store
+release.sh

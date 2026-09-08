@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+// Placeholder — replaced by postinstall with the native binary.
+// If you see this, run: node ../install.cjs
+import { execFileSync } from "child_process";
+import { join, dirname } from "path";
+import { existsSync } from "fs";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const installScript = join(__dirname, "..", "install.cjs");
+if (existsSync(installScript)) {
+  execFileSync(process.execPath, [installScript], { stdio: "inherit" });
+  execFileSync(join(__dirname, "construct"), process.argv.slice(2), {
+    stdio: "inherit",
+  });
+} else {
+  console.error("construct: native binary not installed. Run `npm rebuild @construct-space/cli`");
+  process.exit(1);
+}
